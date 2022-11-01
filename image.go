@@ -1,10 +1,5 @@
 package main
 
-type Data struct {
-	category string
-	value    float64
-}
-
 type Rectangle struct {
 	x         int
 	y         int
@@ -17,11 +12,11 @@ type MosaicImage struct {
 	list []Rectangle
 }
 
-func Mosaic(payload []Data, canvas Rectangle) *MosaicImage {
+func Mosaic(payload []DataPair, canvas Rectangle) *MosaicImage {
 	return split(payload, canvas, &MosaicImage{list: []Rectangle{}})
 }
 
-func split(payload []Data, canvas Rectangle, acc *MosaicImage) *MosaicImage {
+func split(payload []DataPair, canvas Rectangle, acc *MosaicImage) *MosaicImage {
 	if payload == nil {
 		return nil
 	}

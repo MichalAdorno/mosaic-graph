@@ -17,7 +17,10 @@ func main() {
 	flag.IntVar(&height, "height", 500, "Rectangle height")
 
 	flag.Parse()
+	printData(inputFileName)
+	///
 
+	///
 	mosaicImage := createMosaicRepresentation(&Rectangle{x, y, width, height, false})
 	saveMosaicImageAsPng(outputFileName, mosaicImage)
 }
