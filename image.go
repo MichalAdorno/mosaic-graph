@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"math"
 )
 
 type Rectangle struct {
@@ -85,33 +86,35 @@ func divideCanvas(payload []DataPair, canvas Rectangle) (Rectangle, Rectangle) {
 	}
 	var leftSubCanvas, rightSubCanvas Rectangle
 	if canvas.direction { //vertical
+		alfa := int(math.Floor((float64(canvas.width) * payloadCutoff / payloadTotal)))
 		leftSubCanvas = Rectangle{
 			x:         canvas.x,
 			y:         canvas.y,
-			width:     int(float64(canvas.width) * payloadCutoff / payloadTotal),
+			width:     alfa,
 			height:    canvas.height,
 			direction: !canvas.direction,
 		}
 		rightSubCanvas = Rectangle{
-			x:         canvas.x + int(float64(canvas.width)*payloadCutoff/payloadTotal),
+			x:         canvas.x + alfa,
 			y:         canvas.y,
-			width:     int((1 - payloadCutoff/payloadTotal) * float64(canvas.width)),
+			width:     canvas.width - alfa,
 			height:    canvas.height,
 			direction: !canvas.direction,
 		}
 	} else { //horizontal
+		beta := int(math.Floor(math.Floor(float64(canvas.height) * payloadCutoff / payloadTotal)))
 		leftSubCanvas = Rectangle{
 			x:         canvas.x,
 			y:         canvas.y,
 			width:     canvas.width,
-			height:    int(float64(canvas.height) * payloadCutoff / payloadTotal),
+			height:    beta,
 			direction: !canvas.direction,
 		}
 		rightSubCanvas = Rectangle{
 			x:         canvas.x,
-			y:         canvas.y + int(float64(canvas.height)*payloadCutoff/payloadTotal),
+			y:         canvas.y + beta,
 			width:     canvas.width,
-			height:    int((1 - payloadCutoff/payloadTotal) * float64(canvas.height)),
+			height:    canvas.height - beta,
 			direction: !canvas.direction,
 		}
 	}

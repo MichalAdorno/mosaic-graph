@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"image/draw"
@@ -38,6 +39,7 @@ func createBackground(rectangle *Rectangle) *image.RGBA {
 
 func saveMosaicImageAsPng(fileName string, mosaicImage image.RGBA) {
 	fileHandler, err := os.Create(fileName)
+	fmt.Println(fileName)
 	if err != nil {
 		panic(err)
 	}
