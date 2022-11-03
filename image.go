@@ -26,32 +26,19 @@ func CreateMosaicImageInput(payload []DataPair, canvas Rectangle) *MosaicImageIn
 }
 
 func createMosaicImageInput(payload []DataPair, canvas Rectangle, acc *MosaicImageInput) {
-	fmt.Println("*****************")
-	fmt.Printf("acc = %v\n", acc)
 	if payload == nil {
 		return
 	}
 	if len(payload) == 1 {
-		fmt.Printf("x/payload = %v\n", payload)
-		fmt.Printf("x/acc = %v\n", acc)
-		//acc = &MosaicImageInput{list: append(acc.list, canvas)}
-		fmt.Printf("x/newAcc = %v\n", acc)
 		return
 	}
 	leftPayload, rightPayload, _ := splitIntoTwo(payload)
-	//fmt.Printf("leftPayload=%v, rightPayload=%v, err=%v\n", leftPayload, rightPayload, err)
 
 	leftSubCanvas, rightSubCanvas := divideCanvas(payload, canvas)
 
-	//if leftPayload != nil || len(leftPayload) > 0 {
-	//var newAcc MosaicImageInput
 	if len(leftPayload) == 1 {
 		newList := append(acc.list, leftSubCanvas)
 		acc.list = newList
-		fmt.Printf("leftSubCanvas/payload = %v\n", payload)
-		fmt.Printf("leftSubCanvas/leftPayload = %v\n", leftPayload)
-		fmt.Printf("leftSubCanvas = %v\n", leftSubCanvas)
-		fmt.Printf("leftSubCanvas/newAcc = %v\n", acc)
 		createMosaicImageInput(leftPayload, leftSubCanvas, acc)
 	} else {
 		createMosaicImageInput(leftPayload, leftSubCanvas, acc)
@@ -61,10 +48,6 @@ func createMosaicImageInput(payload []DataPair, canvas Rectangle, acc *MosaicIma
 		if len(rightPayload) == 1 {
 			newList := append(acc.list, rightSubCanvas)
 			acc.list = newList
-			fmt.Printf("rightSubCanvas/payload = %v\n", payload)
-			fmt.Printf("rightSubCanvas/rightPayload = %v\n", rightPayload)
-			fmt.Printf("rightSubCanvas = %v\n", rightSubCanvas)
-			fmt.Printf("rightSubCanvas/newAcc = %v\n", acc)
 			createMosaicImageInput(rightPayload, rightSubCanvas, acc)
 		} else {
 			createMosaicImageInput(rightPayload, rightSubCanvas, acc)

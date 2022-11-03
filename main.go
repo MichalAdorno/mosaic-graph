@@ -11,7 +11,7 @@ func main() {
 	var inputFileName, outputFileName string
 	var x, y, width, height int
 
-	flag.StringVar(&inputFileName, "input", "input/data6.csv", "Input CSV file")
+	flag.StringVar(&inputFileName, "input", "input/data.csv", "Input CSV file")
 	flag.StringVar(&outputFileName, "output", "output/"+getDefaultOutputFileName(inputFileName), "Output file")
 	flag.IntVar(&x, "x", 0, "Starting point (X)")
 	flag.IntVar(&y, "y", 0, "Starting point (Y)")
