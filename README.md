@@ -14,3 +14,5 @@ and returns a graph as an output:
 ![Alt text](./output/out_data6.png "Mosaic Graph")
 
 (Note: I skipped printing category names on the graph because I was mainly interested in the algorithm to generate the graph.) 
+
+(Note: This is not the only solution, and can be further fine-tuned by introducing category groups, different approach to splitting, incl. pre-sorting etc.)
